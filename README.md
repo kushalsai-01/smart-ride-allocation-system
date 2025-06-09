@@ -27,3 +27,4 @@ In high-demand urban areas, traditional ride-hailing platforms struggle with lat
 - Match drivers based on location, battery, traffic, and more
 - Dynamic pricing based on demand/supply zones
 - Scalable, fault-tolerant, low-latency backend system
+![Architecture Diagram](./architecture.png)
