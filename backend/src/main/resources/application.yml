@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: Vault Backend
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/vault}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: ${HIBERNATE_DIALECT:org.hibernate.dialect.PostgreSQLDialect}
+server:
+  port: ${PORT:8080}
+  servlet:
+    session:
+      cookie:
+        secure: ${COOKIE_SECURE:true}
+        http-only: true
+        same-site: ${COOKIE_SAMESITE:None}
+
+logging:
+  level:
+    org.springframework.security: INFO
+
+app:
+  cors:
+    # Comma-separated; cannot be '*' when allow-credentials is true
+    allowed-origins: ${ALLOWED_ORIGINS:http://localhost:5173}
+  security:
+    jwt:
+      # Base64-encoded 256-bit key recommended
+      secret: ${JWT_SECRET:}
+      expiration-ms: ${JWT_EXPIRATION_MS:1209600000}
+      cookie-name: ${JWT_COOKIE_NAME:vault_jwt}
+      cookie-domain: ${COOKIE_DOMAIN:}
+      cookie-secure: ${COOKIE_SECURE:true}
+      cookie-same-site: ${COOKIE_SAMESITE:None}
+  crypto:
+    # Base64-encoded 256-bit key required for AES-256-GCM
+    master-key: ${VAULT_ENCRYPTION_KEY:}
+
