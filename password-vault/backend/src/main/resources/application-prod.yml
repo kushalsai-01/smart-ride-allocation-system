@@ -1,0 +1,32 @@
+# Production Environment Configuration
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+  
+  session:
+    cookie:
+      secure: true
+      same-site: strict
+
+server:
+  error:
+    include-message: never
+    include-binding-errors: never
+    include-stacktrace: never
+
+logging:
+  level:
+    com.passwordvault: INFO
+    org.springframework.security: WARN
+    org.hibernate.SQL: WARN
+    root: WARN
+  file:
+    name: /var/log/password-vault/application.log
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
